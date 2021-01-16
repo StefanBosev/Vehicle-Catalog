@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="/homepage" method="get">
+            <link rel="stylesheet" href="style_homepage.css">
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li class="register"><a href="register">Register</a></li>
+            </ul>
+            </br>
+            <h1>Vehicle Catalog</h1>
+            
+            <img class="slideshow" src="slideshow/car1.jpg">
+            <img class="slideshow" src="slideshow/car3.jpg">
+            <img class="slideshow" src="slideshow/car2.jpg">
+            <img class="slideshow" src="slideshow/car4.jpg">
+        </form>
+    </body>
+</html>
+
+<script>
+    var slideIndex = 0;
+    changeSlide();
+
+    function changeSlide(){
+        var i;
+        var element = document.getElementsByClassName("slideshow");
+        for(i = 0; i < element.length; i++){
+            element[i].style.display = "none";
+        }
+        slideIndex++;
+        if(slideIndex > element.length){
+            slideIndex = 1;
+        }
+        element[slideIndex-1].style.display = "block";
+        setTimeout(changeSlide, 2000);
+    }
+</script>
