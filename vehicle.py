@@ -15,7 +15,13 @@ class Vehicle:
             return [Vehicle(*single_row) for single_row in all_rows]
 
     @staticmethod
-    def find(vehicle_id):
+    def get_all_for_owner(owner_id):
+        with DB() as db:
+            all_vehicles  = db.execute('''SELECT * FROM Vehicles WHERE owner_id = ?''', owner_id).fetchall()
+            return [Vehicle(*vehicle) for vehicle in all_vehicles]
+
+    @staticmethod
+    def find_by_id(vehicle_id):
         with DB() as db:
             row = db.execute('''
                 SELECT * FROM Vehicles WHERE vehicle_id = ?
