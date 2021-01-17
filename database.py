@@ -34,7 +34,7 @@ connection.cursor().execute(
     (
         service_id int primary key auto_increment,
         vehicle_id int not null,
-        services enum('change oil', 'change tires', 'test breaks'),
+        services enum('change oil', 'change tires', 'test breaks', 'change overlays', 'change belts', 'test transmission', 'change pads'),
         service_date date not null,
         FOREIGN KEY(vehicle_id) REFERENCES Vehicles(vehicle_id)
     )'''
