@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for
 from flask_httpauth import HTTPBasicAuth
+
 from user import User
 
 app = Flask(__name__)
@@ -27,6 +28,14 @@ def register():
 
 @app.route('/register_button')
 def register_button():
+    return render_template('homepage.html')
+
+@app.route('/home_button')
+def home_button():
+    return render_template('homepage.html')
+
+@app.route('/services_button')
+def services_button():
     return render_template('homepage.html')
 
 if __name__ == '__main__':

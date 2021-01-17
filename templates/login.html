@@ -10,7 +10,7 @@
     }
     h3{
         text-align: center;
-        margin-bottom : 2rem;
+        margin-bottom : 1.5rem;
     }
     button{
         background: #c8d368;
@@ -24,16 +24,12 @@
         background: #a6b148;
     }
     .login{
-        margin-left: 150px;
-        color: #a6b148;
-    }
-    .register{
         background: #eff0e2;
         width: 550px;
         margin-top: 150px;
         margin-left: auto;
         margin-right: auto;
-        padding: 1.5rem;
+        padding: 2rem;
         border: 1px solid #e0e0e0;
     }
     .input_field{
@@ -43,14 +39,14 @@
         border: 1px solid #e0e0e0;
     }
     .stack_panel{
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 </style>
 <html>
     <body>
-        <form class="register" action="/register" method="post">
+        <form class="login" action="/login" method="post">
     
-            <h3>Please fill in your information:</h3>
+            <h3>Please fill in your login information:</h3>
             </br>
             
             <div class="stack_panel">
@@ -64,10 +60,7 @@
             </div>
     
             <div class="stack_panel">
-                <a href=register_button><button>Register</button></a>
-                </br>
-                </br>
-                <a href="login" class="login">Have an account? Log in!</a>
+                <a href=login_button><button>Login</button></a>
             </div>
         </form>
     </body>
