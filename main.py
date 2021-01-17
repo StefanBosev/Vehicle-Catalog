@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for
-
+from flask_httpauth import HTTPBasicAuth
 from user import User
 
 app = Flask(__name__)
+
+auth = HTTPBasicAuth()
 
 @app.route('/')
 def home():

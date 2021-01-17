@@ -29,8 +29,10 @@ connection.cursor().execute('''
 connection.cursor().execute('''
     CREATE TABLE IF NOT EXISTS Services
     (
-        service_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        vehicle_id INTEGER NOT NULL,
+        service_id int primary key auto_increment,
+        vehicle_id int not null,
+        services enum('change oil', 'change tires', 'test breaks', 'change overlays', 'change belts', 'test transmission', 'change pads'),
+        service_date date not null,
         FOREIGN KEY(vehicle_id) REFERENCES Vehicles(vehicle_id)
     )
 ''')
