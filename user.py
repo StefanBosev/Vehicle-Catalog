@@ -21,8 +21,15 @@ class User:
     def delete(self):
         with DB() as db:
             db.execute('''
-                DELETE FROM Users WHERE id = ?
+                DELETE FROM Users WHERE user_id = ?
                 ''', self.id)
+
+    @staticmethod
+    def find_by_id(user_id):
+        with DB() as db:
+            db.execute('''
+            SELECT * FROM Users WHERE user_id = ?
+            ''', user_id)
 
     @staticmethod
     def hash_password(password):
