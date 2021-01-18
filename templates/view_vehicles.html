@@ -39,9 +39,9 @@
 <html>
     <body>
         <ul>
-            <li><a href="home_button">Home</a></li>
-            <li><a href="services_button">Services</a></li>
-            <li class="register"><a href="register_button">Register</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li class="register"><a href="/register">Register</a></li>
         </ul>
         </br>
 
@@ -49,7 +49,7 @@
         </br>
 
         {% for vehicle in vehicles %}
-        <a href="//view_my_cars_button/{{ vehicle.vehicle_id }}"><b>Model:</b> {{ vehicle.model }} | Color: {{ vehicle.color }} | Year of manufacturing: {{ vehicle.manufacture_year }}</a>
+        <a href="//view_my_cars/{{ vehicle.vehicle_id }}"><b>Model:</b> {{ vehicle.model }} | Color: {{ vehicle.color }} | Year of manufacturing: {{ vehicle.manufacture_year }}</a>
         <br/>
         {% endfor %}
     </body>

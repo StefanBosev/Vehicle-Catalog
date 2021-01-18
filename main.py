@@ -1,13 +1,14 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for
 from flask_httpauth import HTTPBasicAuth
+from database import DB
 
 from user import User
 from vehicle import Vehicle
 
 app = Flask(__name__)
 
-# auth = HTTPBasicAuth()
+auth = HTTPBasicAuth()
 
 @app.route('/')
 def home():
@@ -15,9 +16,9 @@ def home():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if register.method == 'GET':
+    if request.method == 'GET':
         return render_template('register.html')
-    elif register.method == 'POST':
+    elif request.method == 'POST':
         values = (
             None,
             request.form['username'],
@@ -27,33 +28,32 @@ def register():
 
         return redirect('/')
 
-@app.route('/register_button')
-def register_button():
-    return render_template('homepage.html')
-
-@app.route('/login_button')
+@app.route('/login')
 def login_button():
-    return render_template('homepage.html')
+    return render_template('login.html')
 
-@app.route('/home_button')
-def home_button():
-    return render_template('homepage.html')
-
-@app.route('/services_button')
+@app.route('/services')
 def services_button():
     return render_template('services.html')
 
-@app.route('/view_my_vehicles_button')
+@app.route('/view_my_vehicles')
+@auth.login_required
 def view_vehicles():
-    #owner_id from login
-    return render_template('view_vehicles.html', vehicle = Vehicle.find_by_owner())
+    username = request.form('username')
+    with DB() as db:
+        owner_id = db.execute('''
+            SELECT username FROM Users WHERE username = ?
+            ''', username)
+        return render_template('view_vehicles.html', vehicle = Vehicle.find_by_owner(owner_id))
 
 @app.route('/view_my_vehicles/<int:vehicle_id>')
+@auth.login_required
 def show_vehicle(vehicle_id):
     vehicle = Vehicle.find_by_id(vehicle_id)
     return render_template('view_vehicles.html', vehicle = vehicle)
 
 @app.route('/view_my_vehicles/<int:vehicle_id>/edit', methods=['GET', 'POST'])
+@auth.login_required
 def edit_vehicle(vehicle_id):
     vehicle = Vehicle.find_by_id(vehicle_id)
     if request.method == 'GET':
