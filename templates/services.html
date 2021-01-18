@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #e2e7bc;
+        font-family: 'Helvetica';
+        font-weight: lighter;
+    }
+    h2{
+        text-align: center;
+        margin-bottom : 1.5rem;
+    }
+    ul{
+        background-color: #c8d368;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        overflow: hidden;
+    } 
+    li{
+        float: left;
+    }
+    li a{
+        color: #636363;
+        display: block;
+        padding: 16px 10px;
+        text-decoration: none;
+    }
+    li a:hover {
+        background-color: #a6b148;
+    }
+    option{
+        color: #636363;
+        background-color: #e0e0e0;
+        font-size: medium;
+    }
+    .register{
+        float: right;
+        margin-right: 10px;
+    }
+    .dropdown{
+        width: 450px;
+        height: 25px;
+        color: #636363;
+        background-color: #e0e0e0;
+        font-size: medium;
+        margin-left: 525px;
+    }
+</style>
+<html>
+    <body>
+        <form action="/services" method="post">
+            <ul>
+                <li><a href="home_button">Home</a></li>
+                <li><a href="services_button">Services</a></li>
+                <li class="register"><a href="register_button">Register</a></li>
+            </ul>
+            </br>
+
+            <h2>Choose a service:</h2>
+            </br>
+            
+            <select class="dropdown">
+                <option>placeholder</option>
+                <option>placeholder</option>
+                <option>placeholder</option>
+            </select>
+        </form>
+    </body>
+</html>

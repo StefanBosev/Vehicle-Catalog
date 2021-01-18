@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<style>
+    *{
+        font-weight: lighter;
+        font-family: Helvetica;
+    }
+    body{
+        background-color: #eff2d3;
+    }
+    h1{
+        color: black;
+        text-align: center;
+    }
+    ul{
+        background-color: #c8d368;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        overflow: hidden;
+    } 
+    li{
+        float: left;
+    }
+    li a{
+        color: #636363;
+        display: block;
+        padding: 16px 10px;
+        text-decoration: none;
+    }
+    li a:hover {
+        background-color: #a6b148;
+    }
+    .register{
+        float: right;
+        margin-right: 10px;
+    }
+</style>
+
+<html>
+    <body>
+        <ul>
+            <li><a href="home_button">Home</a></li>
+            <li><a href="services_button">Services</a></li>
+            <li class="register"><a href="register_button">Register</a></li>
+        </ul>
+        </br>
+
+        <h1>My vehicles</h1>
+        </br>
+
+        {% for vehicle in vehicles %}
+        <a href="/posts/{{ vehicle.vehicle_id }}"><b>Model:</b> {{ vehicle.model }} | Color: {{ vehicle.color }} | Year of manufacturing: {{ vehicle.manufacture_year }}</a>
+        <br/>
+        {% endfor %}
+    </body>
+</html>
