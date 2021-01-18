@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<style>
+    *{
+        font-weight: lighter;
+        font-family: Helvetica;
+    }
+    body{
+        background-color: #eff2d3;
+    }
+    h2{
+        color: black;
+        text-align: center;
+    }
+    label{
+        color: black;
+        text-align: center;
+    }
+    button{
+        background: #c8d368;
+        color: #636363;
+        width: 15%;
+        font-size: 1rem;
+        padding: 3px;
+        border: 1px solid #e0e0e0;
+        margin-left: 650px;
+        margin-top: 10px;
+    }
+    button:hover{
+        background: #a6b148;
+    }
+    .input_field{
+        text-align: center;
+        width: 100%;
+        padding: 12px;
+    }
+</style>
+
+<html>
+    <body>
+        <form action="/view_my_vehicles_button/{{ vehicle.vehicle_id }}/edit" method="post">
+            <h2>Edit vehicle information</h2>
+            <div class="input_field">
+                <label>Model:</label>
+                <input name="model" value="{{ vehicle.model }}"/>
+            </div>
+        
+            <div class="input_field">
+                <label>Colour:</label>
+                <input name="colour" value="{{ vehicle.colour }}"/>
+            </div>
+        
+            <div class="input_field">
+                <label>Year of manufacturing:</label>
+                <input name="manufacture_year" value="{{ vehicle.manufacture_year }}"/>
+            </div>
+        
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
