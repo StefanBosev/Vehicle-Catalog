@@ -55,6 +55,12 @@ class Vehicle:
 
             return self
 
+    def save(self):
+        with DB() as db:
+            values = (self.model, self.colour, self.manufacture_year)
+            db.execute('UPDATE posts SET model = ?, colour = ?, manufacture_year = ? WHERE vehicle_id = ?', values)
+            return self
+
     def delete(self):
         with DB() as db:
             db.execute('''

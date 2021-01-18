@@ -43,14 +43,35 @@ def home_button():
 def services_button():
     return render_template('services.html')
 
-@app.route('/view_my_cars_button')
-def view_cars():
+@app.route('/view_my_vehicles_button')
+def view_vehicles():
     return render_template('view_vehicles.html', vehicle = Vehicle.find_by_owner())
 
-@app.route('/view_my_cars_button/<int:vehicle_id>')
+@app.route('/view_my_vehicles_button/<int:vehicle_id>')
 def show_vehicle(vehicle_id):
     vehicle = Vehicle.find_by_id(vehicle_id)
     return render_template('view_vehicles.html', vehicle = vehicle)
+
+@app.route('/view_my_vehicles_button/<int:vehicle_id>/edit', methods=['GET', 'POST'])
+def edit_vehicle(vehicle_id):
+    vehicle = Vehicle.find_by_id(vehicle_id)
+    if request.method == 'GET':
+
+        return render_template('edit_post.html', vehicle = vehicle)
+    elif request.method == 'POST':
+        vehicle.model = request.form['model']
+        vehicle.colour = request.form['colour']
+        vehicle.manufacture_year = request.form['manufacture_year']
+        vehicle.save()
+
+        return redirect(url_for('show_vehicles', vehicle_id=vehicle.vehicle_id))
+
+@app.route('/view_my_vehicles_button/<int:vehicle_id>/delete', methods=['POST'])
+def delete_vehicle(vehicle_id):
+    vehicle = Vehicle.find_by_id(vehicle_id)
+    vehicle.delete()
+
+    return redirect(url_for('view_vehicles'))
 
 if __name__ == '__main__':
     app.run()
