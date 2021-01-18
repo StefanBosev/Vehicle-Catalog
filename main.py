@@ -7,7 +7,7 @@ from vehicle import Vehicle
 
 app = Flask(__name__)
 
-auth = HTTPBasicAuth()
+# auth = HTTPBasicAuth()
 
 @app.route('/')
 def home():

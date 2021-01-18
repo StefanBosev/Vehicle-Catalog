@@ -7,6 +7,10 @@ class Vehicle:
         self.model = model
         self.colour = colour
         self.manufacture_year = manufacture_year
+        with DB() as db:
+            db.execute('''
+            INSERT INTO Vehicles(owner_id, model, colour, manufacture_year) VALUES(?, ?, ?, ?)
+            ''', owner_id, model, colour, manufacture_year)
 
     @staticmethod
     def get_all():

@@ -7,7 +7,7 @@ class User:
     def __init__(self, id, username, password):
         self.id = id
         self.username = username
-        self.password = password
+        self.password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
     def create(self):
         with DB() as db:
