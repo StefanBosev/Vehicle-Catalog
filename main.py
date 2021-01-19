@@ -67,6 +67,7 @@ def edit_vehicle(vehicle_id):
         return redirect(url_for('show_vehicles', vehicle_id=vehicle.vehicle_id))
 
 @app.route('/view_vehicles/new', methods=['GET', 'POST'])
+@auth.login_required
 def add_vehicle():
     if request.method == 'GET':
         return render_template('new_vehicle.html')
@@ -77,6 +78,7 @@ def add_vehicle():
         return redirect(url_for('view_vehicles'))
 
 @app.route('/view_my_vehicles/<int:vehicle_id>/delete', methods=['POST'])
+@auth.login_required
 def delete_vehicle(vehicle_id):
     vehicle = Vehicle.find_by_id(vehicle_id)
     vehicle.delete()
