@@ -71,9 +71,13 @@ def add_vehicle():
     if request.method == 'GET':
         return render_template('new_vehicle.html')
     elif request.method == 'POST':
-        values = (None, request.form['auth.username'], request.form['model'], request.form['colour'], request.form['manufacture_year'])
-        Vehicle(*values).create()
-        return redirect(url_for('view_vehicles'))
+        with DB() as db:
+            owner_id = db.execute('''
+                SELECT user_id FROM Users WHERE username = ?
+                ''', auth.username).fetchone()
+            values = (None, owner_id, request.form['model'], request.form['colour'], request.form['manufacture_year'])
+            Vehicle(*values).create()
+            return redirect(url_for('view_vehicles'))
 
 @app.route('/view_my_vehicles/<int:vehicle_id>/delete', methods=['POST'])
 @auth.login_required
