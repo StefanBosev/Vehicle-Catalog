@@ -39,11 +39,10 @@ def services_button():
 @app.route('/view_my_vehicles')
 @auth.login_required
 def view_vehicles():
-    username = request.form('username')
     with DB() as db:
         owner_id = db.execute('''
-            SELECT username FROM Users WHERE username = ?
-            ''', username)
+            SELECT user_id FROM Users WHERE username = ?
+            ''', auth.username).fetchone()
         return render_template('view_vehicles.html', vehicle = Vehicle.find_by_owner(owner_id))
 
 @app.route('/view_my_vehicles/<int:vehicle_id>')
